@@ -1,0 +1,108 @@
+[project]
+name = "rezebbtunes"
+version = "1.0.0"
+description = "RezebbTunes - Telegram Music Bot + Group Management Bot powered by PyTdBot and PyTgCalls"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Mukesh", email = "mukesh@t.me" },
+]
+keywords = [
+    "telegram",
+    "music",
+    "bot",
+    "group-management",
+    "async",
+    "tdlib",
+    "pytgcalls",
+    "voicechat",
+    "spotify",
+    "ytmusic",
+    "opensource",
+    "pytdbot",
+    "py-tgcalls",
+    "yt-dlp",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Communications :: Chat :: Telegram",
+    "Topic :: Multimedia :: Sound/Audio :: Players",
+    "Environment :: Console",
+    "Framework :: AsyncIO",
+]
+dependencies = [
+    # ── Music bot core (from MelodyForgeBot) ──
+    "aiofiles>=25.1.0",
+    "aiohttp>=3.13.5",
+    "cachetools>=7.0.6",
+    "kurigram>=2.2.22",
+    "ntgcalls==2.2.5",
+    "pillow>=12.2.0",
+    "psutil>=7.2.2",
+    "py-tgcalls>=2.2.12",
+    "py-yt-search==0.7.2",
+    "pycryptodome>=3.23.0",
+    "pydantic>=2.13.3",
+    "pymongo>=4.17.0",
+    "pytdbot>=0.9.10",
+    "pytgcrypto>=1.2.12",
+    "python-dotenv>=1.2.2",
+    "tdjson==1.8.63",
+    "ujson>=5.12.0",
+    "yt-dlp>=2026.4.10.235301.dev0",
+    # ── Group management additions (from LadyRezebb) ──
+    "motor>=3.6.0",
+    "apscheduler==3.6.3",
+    "requests>=2.32.3",
+    "beautifulsoup4>=4.12.3",
+    "lxml>=4.9.4",
+    "html2text>=2024.2.26",
+    "regex>=2024.5.15",
+    "emoji>=2.12.1",
+    "pyfiglet",
+    "speedtest-cli>=2.1.3",
+    "wikipedia>=1.4.0",
+    "telegraph>=2.2.0",
+    "gpytranslate>=1.5.1",
+    "gtts",
+    "geopy>=2.4.1",
+    "jikanpy>=4.3.2",
+    "nekos.py",
+    "pyshorteners",
+    "cloudscraper>=1.2.71",
+    "feedparser>=6.0.11",
+    "search_engine_parser>=0.6.8",
+    "dateparser>=1.2.0",
+    "hachoir>=3.3.0",
+    "opencv-python",
+    "countryinfo>=0.1.2",
+    "phonenumbers>=9.0.34",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff"
+]
+
+[project.scripts]
+start = "src.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/RezebbTunes/RezebbTunes"
+Source = "https://github.com/RezebbTunes/RezebbTunes"
+
+[tool.uv]
+package = true
+
+[tool.uv.sources]
+pytdbot = { git = "https://github.com/pytdbot/client", rev = "main" }
+
+[tool.setuptools]
+packages = [
+    "src",
+]

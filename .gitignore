@@ -1,0 +1,14 @@
+__pycache__/
+/.idea
+/database
+.env
+/src/cookies
+/*.egg-info
+*.log
+
+.venv/
+*.session
+*.session-journal
+pytdbot.session
+
+*.exe
