@@ -1,63 +1,28 @@
-FROM alpine:3.22 AS python-builder
+FROM python:3.11-slim
 
-ARG PYTHON_VERSION=3.11.15
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
 
-RUN apk add --no-cache \
-    build-base \
-    ca-certificates \
-    wget \
-    xz \
-    openssl-dev \
-    bzip2-dev \
-    zlib-dev \
-    readline-dev \
-    sqlite-dev \
-    ncurses-dev \
-    gdbm-dev \
-    xz-dev \
-    libffi-dev \
-    tk-dev
+WORKDIR /app
 
-WORKDIR /usr/src
-
-RUN wget -q https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
-    && tar -xzf Python-${PYTHON_VERSION}.tgz \
-    && cd Python-${PYTHON_VERSION} \
-    && ./configure --prefix=/opt/python --with-ensurepip=install \
-    && make -j"$(nproc)" \
-    && make install
-
-FROM alpine:3.22
-
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     ffmpeg \
     git \
     curl \
-    ca-certificates \
-    libstdc++ \
-    glib \
-    mesa-gl \
-    openssl \
-    bzip2 \
-    zlib \
-    readline \
-    sqlite-libs \
-    ncurses-libs \
-    gdbm \
-    xz-libs \
-    libffi \
-    tk
+    build-essential \
+    gcc \
+    g++ \
+    cmake \
+    pkg-config \
+    libssl-dev \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY --from=python-builder /opt/python /opt/python
-
-ENV PATH="/opt/python/bin:${PATH}"
-ENV PYTHONUNBUFFERED=1
-
-RUN python3.11 -m pip install --no-cache-dir --upgrade pip uv
-
-WORKDIR /app
 COPY . .
 
-RUN uv pip install -e . --system
+RUN python -m pip install --upgrade pip setuptools wheel
 
-CMD ["python3.11", "-m", "src"]
+RUN pip install -e .
+
+CMD ["python", "-m", "src"]
