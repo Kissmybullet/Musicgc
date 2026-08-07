@@ -149,7 +149,7 @@ pyparsing==3.3.2
     # via cloudscraper
 pyshorteners==1.0.1
     # via rezebbtunes (pyproject.toml)
-pytdbot @ git+https://github.com/pytdbot/client@94d771e527cf9214f1f7d0ee3c87dc4fdae30918
+pytdbot==0.9.10
     # via rezebbtunes (pyproject.toml)
 pytgcrypto==1.2.12
     # via rezebbtunes (pyproject.toml)
