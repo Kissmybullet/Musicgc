@@ -304,8 +304,9 @@ async def start_cmd(c: Client, message: types.Message) -> None:
 
         num_users = len(await db.get_all_users())
         num_chats = len(await db.get_all_chats())
-        reply = await message.reply_photo(
-            photo=config.START_IMG,
+        reply = await message.reply(
+    TEXT
+        )
             caption=START_TEXT.format(mention_md, bot_fn, num_users, num_chats),
             reply_markup=add_me_markup(c.me.usernames.editable_username),
             parse_mode="markdown",
